@@ -96,7 +96,7 @@ export default function FinalEnding() {
             </motion.div>
             
             <p className="font-handwriting text-3xl text-pink-200">
-              Love,<br/>Nathan
+              Love,<br/>Ash2flyy
             </p>
           </div>
         </motion.div>

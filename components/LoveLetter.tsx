@@ -49,7 +49,7 @@ export default function LoveLetter() {
 
           <p className="pt-4 text-right">
             Yours always,<br/>
-            Nathan
+            Ash2flyy
           </p>
         </div>
       </motion.div>
