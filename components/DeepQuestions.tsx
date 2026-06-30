@@ -3,9 +3,30 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "../config";
-import { MessageCircleHeart, CheckCircle2 } from "lucide-react";
+import { MessageCircleHeart, CheckCircle2, Send } from "lucide-react";
 
 export default function DeepQuestions() {
+  const handleSendWhatsApp = () => {
+    let message = "💌 *My Answers for You* 💌\n\n";
+    
+    let hasAnswers = false;
+    siteConfig.deepQuestions.forEach((q, idx) => {
+      const answer = localStorage.getItem(`q-${idx}`);
+      if (answer && answer.trim() !== "") {
+        hasAnswers = true;
+        message += `*${q}*\n${answer}\n\n`;
+      }
+    });
+
+    if (!hasAnswers) {
+      alert("You haven't answered any questions yet!");
+      return;
+    }
+
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/${siteConfig.whatsappNumber}?text=${encodedMessage}`, "_blank");
+  };
+
   return (
     <section className="py-24 relative px-4 max-w-6xl mx-auto w-full">
       <motion.div
@@ -21,10 +42,20 @@ export default function DeepQuestions() {
         <p className="text-slate-400">Tap a card to answer. Your answers are saved just for you.</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {siteConfig.deepQuestions.map((q, idx) => (
           <FlipCard key={idx} question={q} id={`q-${idx}`} />
         ))}
+      </div>
+
+      <div className="flex justify-center">
+        <button
+          onClick={handleSendWhatsApp}
+          className="flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold rounded-full shadow-lg shadow-pink-500/25 transition-all hover:scale-105 active:scale-95"
+        >
+          <Send className="w-5 h-5" />
+          Send My Answers to You 💌
+        </button>
       </div>
     </section>
   );

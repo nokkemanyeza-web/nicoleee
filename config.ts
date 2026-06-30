@@ -2,6 +2,9 @@ export const siteConfig = {
   // Your Anniversary Date (Format: YYYY-MM-DD)
   anniversaryDate: "2026-04-25",
 
+  // WhatsApp Number for receiving answers (Include country code, no '+')
+  whatsappNumber: "263789538987",
+
   // Spotify Playlist Embed URL
   // You can get this by right-clicking a playlist on Spotify -> Share -> Embed playlist -> Copy the src URL
   playlistUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtw?utm_source=generator",
